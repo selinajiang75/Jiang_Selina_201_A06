@@ -189,6 +189,21 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+# assigns divisor values based on number of digits, and rounds accordingly
+round_func <- function(x){
+  if(nchar(x) == 2){
+    divisor <- 10
+  } else if(nchar(x) == 3){
+    divisor <- 100
+  } else{
+    divisor <- 1000
+  }
+  round(x/divisor) * divisor
+}
+
+# applies round function to each value in matrix
+apply(mat_rand, 1:2, round_func)
+
 
 ```
 
