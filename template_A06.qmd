@@ -117,13 +117,16 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
-player_info$MJ <- append(player_info$MJ, list(height = 78))
-player_info$LJ <- append(player_info$LJ, list(height = 81))
-player_info$KB <- append(player_info$KB, list(height = 78))
-player_info$KA <- append(player_info$KA, list(height = 86))
-player_info$SO <- append(player_info$SO, list(height = 85))
+# creates vector that contains all heights in order
+heights <- c(78, 81, 78, 86, 85)
+
+# loops through each player and adds height to each list
+for (i in 1:length(player_info)){
+  player_info[[i]]$height <- heights[i]
+}
 
 player_info
+
 ```
 
 
@@ -146,6 +149,7 @@ Note: this must still run correctly even if the values were to change or if anot
 points_per_game <- list()
 name_keys <- names(player_info)
 
+# loops through list and calculates points per game, adds it to new list with initials
 for(i in 1:length(player_info)){
   points_per_game_value <- player_info[[i]][[4]]/player_info[[i]][[3]]
   points_per_game[name_keys[[i]]] <- points_per_game_value
